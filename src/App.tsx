@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { HeroSlider } from "./components/HeroSlider";
+import { motion } from "motion/react";
+import { AnimatedSection, FadeIn, SlideInLeft, SlideInRight, ScaleIn } from "./components/AnimatedSection";
 
 export default function App() {
   const heroImages = [
@@ -26,54 +28,91 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-background font-jakarta">
+    <div className="min-h-screen bg-background scroll-smooth font-jakarta">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50">
+      <motion.nav 
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <motion.div 
+              className="flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <ImageWithFallback 
                 src="/images/dlcf-logo.png"
-                alt="Deeper Life Campus Fellowship Logo"
+                alt="Students studying together"
                 width={45}
               />
-              <span className="text-primary text-xl font-semibold">Deeper Life Campus Felowship, Ile-Ife</span>
-            </div>
+              <span className="text-primary sm:text-xl xxs:text-lg font-semibold">Deeper Life Campus Fellowship, Ile-Ife.</span>
+            </motion.div>
             <div className="hidden md:flex items-center gap-6">
-              <a href="#about" className="text-foreground/70 hover:text-primary transition-colors">About</a>
-              <a href="#support" className="text-foreground/70 hover:text-primary transition-colors">Support</a>
-              <a href="#tutorials" className="text-foreground/70 hover:text-primary transition-colors">Tutorials</a>
-              <a href="#contact" className="text-foreground/70 hover:text-primary transition-colors">Contact</a>
+              {['About', 'Support', 'Tutorials', 'Contact'].map((item, index) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-foreground/70 hover:text-primary transition-colors relative"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                  whileHover={{ y: -2 }}
+                >
+                  {item}
+                </motion.a>
+              ))}
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
         {/* Image Slider */}
         <div className="absolute inset-0 z-0">
           <HeroSlider images={heroImages} />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/55 to-primary/75"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/65 to-primary/75"></div>
         </div>
         
         {/* Centered Content */}
         <div className="relative z-10 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl text-center">
-            <h1 className="text-white mb-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="text-white mb-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+            >
               Dear Freshman, Welcome to Great Ife — We're Glad You're Here!
-            </h1>
-            <p className="text-white/95 text-xl sm:text-2xl mb-10 leading-relaxed max-w-3xl mx-auto">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+              className="text-white/95 text-xl sm:text-2xl mb-10 leading-relaxed max-w-3xl mx-auto"
+            >
               This space was created for you — to help you start strong, stay smart, and thrive on campus.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6" asChild>
-                <a href="#about">Meet Us</a>
-              </Button>
-              <Button size="lg" variant="outline" className="bg-transparent text-white border-2 border-white hover:bg-white/10 text-lg px-8 py-6" asChild>
-                <a href="#freshers">Join Freshers' Group</a>
-              </Button>
-            </div>
+            </motion.p>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6" asChild>
+                  <a href="#about">Meet Us</a>
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" variant="outline" className="bg-transparent text-white border-2 border-white hover:bg-white/10 text-lg px-8 py-6" asChild>
+                  <a href="#freshers">Join Freshers' Group</a>
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
 
@@ -86,359 +125,403 @@ export default function App() {
       </section>
 
       {/* About / Meet Us Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-primary mb-6">Meet Us</h2>
-              <p className="text-foreground/80 mb-6 leading-relaxed">
+            <SlideInLeft>
+              <h2 className="text-primary mb-6 font-semibold text-2xl">Meet Us</h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-foreground/80 mb-6 leading-relaxed"
+              >
                 We are <strong>Deeper Life Campus Fellowship (DLCF)</strong> — an assembly of saintly intellectuals committed to integrating biblical teachings with scholarly pursuits. We believe that faith and knowledge go hand in hand, and that spiritual growth enhances academic excellence.
-              </p>
-              <p className="text-foreground/80 mb-8 leading-relaxed">
+              </motion.p>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-foreground/80 mb-8 leading-relaxed"
+              >
                 Our community is built on the foundation of integrity, diligence, and service — living out the principle:
-              </p>
+              </motion.p>
               
-              <Card className="bg-accent border-none">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/10 rounded-xl">
-                      <Zap className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-primary italic">
-                        "Not slothful in business, fervent in spirit, serving the Lord."
-                      </p>
-                      <p className="text-sm text-muted-foreground mt-1">— Romans 12:11</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <ScaleIn delay={0.4}>
+                <motion.div whileHover={{ scale: 1.02, y: -4 }} transition={{ type: "spring", stiffness: 300 }}>
+                  <Card className="bg-accent border-none shadow-lg">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 bg-primary/10 rounded-xl">
+                          <Zap className="w-6 h-6 text-primary" />
+                        </div>
+                        <div>
+                          <p className="text-primary italic">
+                            "Not slothful in business, fervent in spirit, serving the Lord."
+                          </p>
+                          <p className="text-sm text-muted-foreground mt-1">— Romans 12:11</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </ScaleIn>
 
               <div className="grid grid-cols-3 gap-4 mt-8">
-                <div className="text-center p-4">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-3">
-                    <BookOpen className="w-6 h-6 text-primary" />
-                  </div>
-                  <p className="text-sm text-foreground/70">Biblical Teaching</p>
-                </div>
-                <div className="text-center p-4">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-3">
-                    <GraduationCap className="w-6 h-6 text-primary" />
-                  </div>
-                  <p className="text-sm text-foreground/70">Academic Excellence</p>
-                </div>
-                <div className="text-center p-4">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-3">
-                    <Heart className="w-6 h-6 text-primary" />
-                  </div>
-                  <p className="text-sm text-foreground/70">Community Service</p>
-                </div>
+                {[
+                  { icon: BookOpen, label: "Biblical Teaching" },
+                  { icon: GraduationCap, label: "Academic Excellence" },
+                  { icon: Heart, label: "Community Service" }
+                ].map((item, index) => (
+                  <ScaleIn key={item.label} delay={0.5 + index * 0.1}>
+                    <motion.div 
+                      className="text-center p-4"
+                      whileHover={{ y: -8 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-3">
+                        <item.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <p className="text-sm text-foreground/70">{item.label}</p>
+                    </motion.div>
+                  </ScaleIn>
+                ))}
               </div>
-            </div>
+            </SlideInLeft>
 
-            <div className="relative">
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <ImageWithFallback 
-                  src="https://images.unsplash.com/photo-1589872880544-76e896b0592c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50cyUyMHN0dWR5aW5nJTIwdG9nZXRoZXIlMjBsaWJyYXJ5fGVufDF8fHx8MTc2MDA2NzQyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Students studying together"
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
+            <SlideInRight>
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                <div className="rounded-3xl overflow-hidden shadow-2xl">
+                  <ImageWithFallback 
+                    src="https://images.unsplash.com/photo-1589872880544-76e896b0592c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50cyUyMHN0dWR5aW5nJTIwdG9nZXRoZXIlMjBsaWJyYXJ5fGVufDF8fHx8MTc2MDA2NzQyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Students studying together"
+                    className="w-full h-auto"
+                  />
+                </div>
+              </motion.div>
+            </SlideInRight>
           </div>
         </div>
       </section>
 
       {/* Printing Support Section */}
-      <section id="support" className="py-20 bg-muted">
+      <section id="support" className="py-20 bg-muted overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-none shadow-lg">
-              <CardContent className="p-8 lg:p-12">
-                <div className="flex flex-col lg:flex-row items-center gap-8">
-                  <div className="flex-shrink-0">
-                    <div className="w-24 h-24 bg-primary/10 rounded-2xl flex items-center justify-center">
-                      <Printer className="w-12 h-12 text-primary" />
+            <AnimatedSection>
+              <motion.div whileHover={{ scale: 1.02, y: -8 }} transition={{ type: "spring", stiffness: 200 }}>
+                <Card className="border-none shadow-lg">
+                  <CardContent className="p-8 lg:p-12">
+                    <div className="flex flex-col lg:flex-row items-center gap-8">
+                      <motion.div 
+                        className="flex-shrink-0"
+                        initial={{ rotate: 0 }}
+                        whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <div className="w-24 h-24 bg-primary/10 rounded-2xl flex items-center justify-center">
+                          <Printer className="w-12 h-12 text-primary" />
+                        </div>
+                      </motion.div>
+                      <div className="flex-1 text-center lg:text-left">
+                        <h2 className="text-primary mb-4">Print What You Need, Free of Charge</h2>
+                        <p className="text-foreground/80 mb-6 leading-relaxed">
+                          Forget the stress of running around campus just to print one form. We've got you covered! Print your course registration documents for free at our stand at <strong>Anglomoz</strong>.
+                        </p>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Button className="bg-primary hover:bg-primary/90">
+                            <MapPin className="w-4 h-4 mr-2" />
+                            Locate Our Stand
+                          </Button>
+                        </motion.div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex-1 text-center lg:text-left">
-                    <h2 className="text-primary mb-4">Print What You Need, Free of Charge</h2>
-                    <p className="text-foreground/80 mb-6 leading-relaxed">
-                      Forget the stress of running around campus just to print one form. We've got you covered! Print your course registration documents for free at our stand at <strong>Anglomoz</strong>.
-                    </p>
-                    <Button className="bg-primary hover:bg-primary/90">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      Locate Our Stand
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* Life Tutorials Section */}
-      <section id="tutorials" className="py-20 bg-white">
+      <section id="tutorials" className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <ImageWithFallback 
-                  src="https://images.unsplash.com/photo-1664382951771-40432ecc81bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFjaGVyJTIwY2xhc3Nyb29tJTIwZWR1Y2F0aW9ufGVufDF8fHx8MTc2MDA0MTAyMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Teacher in classroom"
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
+            <SlideInLeft className="order-2 lg:order-1">
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                <div className="rounded-3xl overflow-hidden shadow-2xl">
+                  <ImageWithFallback 
+                    src="https://images.unsplash.com/photo-1664382951771-40432ecc81bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFjaGVyJTIwY2xhc3Nyb29tJTIwZWR1Y2F0aW9ufGVufDF8fHx8MTc2MDA0MTAyMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    alt="Teacher in classroom"
+                    className="w-full h-auto"
+                  />
+                </div>
+              </motion.div>
+            </SlideInLeft>
 
-            <div className="order-1 lg:order-2">
-              <h2 className="text-primary mb-6">Learn Better with Life Tutorials</h2>
+            <SlideInRight className="order-1 lg:order-2">
+              <h2 className="text-primary mb-6 font-semibold text-2xl">Learn Better with Life Tutorials</h2>
               <p className="text-foreground/80 mb-8 leading-relaxed">
                 Our Life Tutorials are specially designed to meet your academic needs — both before and after lectures begin. Get ahead of the curve with foundational knowledge and stay on track throughout the semester.
               </p>
 
               <div className="space-y-4">
-                <Card className="border-primary/20">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Calendar className="w-5 h-5 text-primary" />
-                      <h3 className="text-foreground">Date</h3>
-                    </div>
-                    <p className="text-foreground/70 pl-8">To be announced</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-primary/20">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                      <Clock className="w-5 h-5 text-primary" />
-                      <h3 className="text-foreground">Time</h3>
-                    </div>
-                    <p className="text-foreground/70 pl-8">To be announced</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-primary/20">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                      <MapPin className="w-5 h-5 text-primary" />
-                      <h3 className="text-foreground">Venue</h3>
-                    </div>
-                    <p className="text-foreground/70 pl-8">To be announced</p>
-                  </CardContent>
-                </Card>
+                {[
+                  { icon: Calendar, label: "Date", value: "To be announced" },
+                  { icon: Clock, label: "Time", value: "To be announced" },
+                  { icon: MapPin, label: "Venue", value: "To be announced" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <motion.div whileHover={{ x: 8, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
+                      <Card className="border-primary/20 hover:border-primary/40 transition-colors">
+                        <CardContent className="p-6">
+                          <div className="flex items-center gap-3 mb-2">
+                            <item.icon className="w-5 h-5 text-primary" />
+                            <h3 className="text-foreground">{item.label}</h3>
+                          </div>
+                          <p className="text-foreground/70 pl-8">{item.value}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </SlideInRight>
           </div>
         </div>
       </section>
 
       {/* Orientation Sessions Section */}
-      <section className="py-20 bg-accent">
+      <section className="py-20 bg-accent overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-primary mb-4">Sessions That Prepare You for the Journey Ahead</h2>
+          <AnimatedSection className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-primary mb-4 font-semibold text-2xl">Sessions That Prepare You for the Journey Ahead</h2>
             <p className="text-foreground/80 leading-relaxed">
               Starting university can be overwhelming. Our orientation sessions are designed to help you navigate this new chapter with confidence and wisdom.
             </p>
-          </div>
+          </AnimatedSection>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0">
-                    <Compass className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-foreground mb-2">Navigating Campus Life</h3>
-                    <p className="text-foreground/70">Learn the ropes — from finding your way around campus to accessing essential services.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0">
-                    <Zap className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-foreground mb-2">Building Discipline</h3>
-                    <p className="text-foreground/70">Develop habits that will help you excel academically and grow spiritually.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0">
-                    <Heart className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-foreground mb-2">Balancing Academics & Relationships</h3>
-                    <p className="text-foreground/70">Practical wisdom on maintaining healthy friendships and staying focused on your goals.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0">
-                    <Users className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-foreground mb-2">Learning from Senior Colleagues</h3>
-                    <p className="text-foreground/70">Connect with mentors who have walked this path and are eager to guide you.</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {[
+              { icon: Compass, title: "Navigating Campus Life", desc: "Learn the ropes — from finding your way around campus to accessing essential services." },
+              { icon: Zap, title: "Building Discipline", desc: "Develop habits that will help you excel academically and grow spiritually." },
+              { icon: Heart, title: "Balancing Academics & Relationships", desc: "Practical wisdom on maintaining healthy friendships and staying focused on your goals." },
+              { icon: Users, title: "Learning from Senior Colleagues", desc: "Connect with mentors who have walked this path and are eager to guide you." }
+            ].map((session, index) => (
+              <motion.div
+                key={session.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <motion.div
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Card className="border-none shadow-md hover:shadow-xl transition-shadow h-full">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <motion.div 
+                          className="p-3 bg-primary/10 rounded-xl flex-shrink-0"
+                          whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <session.icon className="w-6 h-6 text-primary" />
+                        </motion.div>
+                        <div>
+                          <h3 className="text-foreground mb-2">{session.title}</h3>
+                          <p className="text-foreground/70">{session.desc}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Freshers' Support Group Section */}
-      <section id="freshers" className="py-20 bg-white">
+      <section id="freshers" className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-2xl mb-6">
-              <MessageCircle className="w-10 h-10 text-primary" />
-            </div>
-            <h2 className="text-primary mb-4">A Safe Space for Questions and Guidance</h2>
-            <p className="text-foreground/80 mb-8 leading-relaxed">
-              Have a question? Need advice? Don't navigate this journey alone. Join our Freshers' Support Group on WhatsApp to ask questions, receive quick practical answers, and connect with fellow freshers and mentors who care.
-            </p>
-            <Button size="lg" className="bg-[#25D366] hover:bg-[#20BA5A] text-white">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Join WhatsApp Group
-            </Button>
-            <p className="text-sm text-muted-foreground mt-4">
-              Click to join our active community of freshers
-            </p>
+            <ScaleIn>
+              <motion.div 
+                className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-2xl mb-6"
+                whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <MessageCircle className="w-10 h-10 text-primary" />
+              </motion.div>
+            </ScaleIn>
+            <AnimatedSection>
+              <h2 className="text-primary mb-4 font-semibold text-2xl">A Safe Space for Questions and Guidance</h2>
+              <p className="text-foreground/80 mb-8 leading-relaxed">
+                Have a question? Need advice? Don't navigate this journey alone. Join our Freshers' Support Group on WhatsApp to ask questions, receive quick practical answers, and connect with fellow freshers and mentors who care.
+              </p>
+              <motion.div 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#20BA5A] text-white">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Join WhatsApp Group
+                </Button>
+              </motion.div>
+              <p className="text-sm text-muted-foreground mt-4">
+                Click to join our active community of freshers
+              </p>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-muted">
+      <section id="contact" className="py-20 bg-muted overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-primary mb-4">We're Just a Message Away</h2>
+          <AnimatedSection className="text-center mb-12">
+            <h2 className="text-primary mb-4 font-semibold text-2xl">We're Just a Message Away</h2>
             <p className="text-foreground/80 max-w-2xl mx-auto leading-relaxed">
               Have specific questions or need assistance? Reach out to our dedicated contact persons. We're here to help!
             </p>
-          </div>
+          </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                  <Printer className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-foreground mb-2">Promise</h3>
-                <p className="text-sm text-foreground/70 mb-3">Online Registration & Printing</p>
-                <a href="tel:09064996743" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
-                  <Phone className="w-4 h-4" />
-                  <span className="text-sm">09064996743</span>
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                  <Home className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-foreground mb-2">Silas</h3>
-                <p className="text-sm text-foreground/70 mb-3">Accommodation Support</p>
-                <a href="tel:09064996743" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
-                  <Phone className="w-4 h-4" />
-                  <span className="text-sm">Contact for details</span>
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                  <Home className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-foreground mb-2">Precious</h3>
-                <p className="text-sm text-foreground/70 mb-3">Accommodation Support</p>
-                <a href="tel:09064996743" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
-                  <Phone className="w-4 h-4" />
-                  <span className="text-sm">Contact for details</span>
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardContent className="p-6 text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4">
-                  <GraduationCap className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-foreground mb-2">Matthew</h3>
-                <p className="text-sm text-foreground/70 mb-3">Life Tutorials & Academics</p>
-                <a href="tel:09064996743" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
-                  <Phone className="w-4 h-4" />
-                  <span className="text-sm">Contact for details</span>
-                </a>
-              </CardContent>
-            </Card>
+            {[
+              { icon: Printer, name: "Promise", role: "Online Registration & Printing", phone: "09064996743" },
+              { icon: Home, name: "Silas", role: "Accommodation Support", phone: "Contact for details" },
+              { icon: Home, name: "Precious", role: "Accommodation Support", phone: "Contact for details" },
+              { icon: GraduationCap, name: "Matthew", role: "Life Tutorials & Academics", phone: "Contact for details" }
+            ].map((contact, index) => (
+              <motion.div
+                key={contact.name}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <motion.div
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Card className="border-none shadow-md hover:shadow-xl transition-shadow h-full">
+                    <CardContent className="p-6 text-center">
+                      <motion.div 
+                        className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <contact.icon className="w-7 h-7 text-primary" />
+                      </motion.div>
+                      <h3 className="text-foreground mb-2">{contact.name}</h3>
+                      <p className="text-sm text-foreground/70 mb-3">{contact.role}</p>
+                      <a href={`tel:${contact.phone}`} className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
+                        <Phone className="w-4 h-4" />
+                        <span className="text-sm">{contact.phone}</span>
+                      </a>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary text-white py-12">
+      <footer className="bg-primary text-white py-12 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Cross className="w-6 h-6" />
-                <span>DLCF Great Ife</span>
+            <FadeIn delay={0}>
+              <div>
+                <motion.div 
+                  className="flex items-center gap-2 mb-4"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Cross className="w-6 h-6" />
+                  <span>Deeper Life Campus Fellowship, Ile-Ife.</span>
+                </motion.div>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  An assembly of saintly intellectuals integrating biblical teachings with scholarly pursuits.
+                </p>
               </div>
-              <p className="text-white/80 text-sm leading-relaxed">
-                An assembly of saintly intellectuals integrating biblical teachings with scholarly pursuits.
-              </p>
-            </div>
+            </FadeIn>
 
-            <div>
-              <h3 className="mb-4 text-white">Quick Links</h3>
-              <ul className="space-y-2 text-sm text-white/80">
-                <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#support" className="hover:text-white transition-colors">Printing Support</a></li>
-                <li><a href="#tutorials" className="hover:text-white transition-colors">Life Tutorials</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-4 text-white">Connect With Us</h3>
-              <p className="text-white/80 text-sm mb-4 italic">
-                "Not slothful in business, fervent in spirit, serving the Lord."
-              </p>
-              <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <MessageCircle className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <Phone className="w-5 h-5" />
-                </a>
+            <FadeIn delay={0.1}>
+              <div>
+                <h3 className="mb-4 text-white">Quick Links</h3>
+                <ul className="space-y-2 text-sm text-white/80">
+                  {['About Us', 'Printing Support', 'Life Tutorials', 'Contact'].map((link, index) => (
+                    <motion.li 
+                      key={link}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                    >
+                      <motion.a 
+                        href={`#${link.toLowerCase().replace(' ', '-')}`} 
+                        className="hover:text-white transition-colors inline-block"
+                        whileHover={{ x: 4 }}
+                      >
+                        {link}
+                      </motion.a>
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <div>
+                <h3 className="mb-4 text-white">Connect With Us</h3>
+                <p className="text-white/80 text-sm mb-4 italic">
+                  "Not slothful in business, fervent in spirit, serving the Lord."
+                </p>
+                <div className="flex gap-3">
+                  {[MessageCircle, Phone].map((Icon, index) => (
+                    <motion.a
+                      key={index}
+                      href="#"
+                      className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
           </div>
 
-          <div className="border-t border-white/20 pt-8 text-center text-sm text-white/70">
-            <p>© 2025 Deeper Life Campus Fellowship, Great Ife. All rights reserved.</p>
-          </div>
+          <FadeIn delay={0.3}>
+            <div className="border-t border-white/20 pt-8 text-center text-sm text-white/70">
+              <p>© 2025 Deeper Life Campus Fellowship, Ile-Ife. All rights reserved.</p>
+            </div>
+          </FadeIn>
         </div>
       </footer>
     </div>
