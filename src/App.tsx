@@ -20,6 +20,8 @@ import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { HeroSlider } from "./components/HeroSlider";
 import { motion } from "motion/react";
 import { AnimatedSection, FadeIn, SlideInLeft, SlideInRight, ScaleIn } from "./components/AnimatedSection";
+import { FaWhatsapp } from "react-icons/fa";
+import { useIsMobile } from "./components/ui/use-mobile";
 
 export default function App() {
   const heroImages = [
@@ -109,7 +111,7 @@ export default function App() {
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" variant="outline" className="bg-transparent text-white border-2 border-white hover:bg-white/10 text-lg px-8 py-6" asChild>
-                  <a href="#freshers">Join Freshers' Group</a>
+                  <a href="https://chat.whatsapp.com/BR7UM9X6PBu448t4STHcjE?mode=ems_copy_t">Join Freshers' Group</a>
                 </Button>
               </motion.div>
             </motion.div>
@@ -276,11 +278,12 @@ export default function App() {
                 Our Life Tutorials are specially designed to meet your academic needs — both before and after lectures begin. Get ahead of the curve with foundational knowledge and stay on track throughout the semester.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-4 grid grid-cols-2 gap-x-4">
                 {[
                   { icon: Calendar, label: "Date", value: "To be announced" },
-                  { icon: Clock, label: "Time", value: "To be announced" },
-                  { icon: MapPin, label: "Venue", value: "To be announced" }
+                  { icon: Clock, label: "Time", value: "4PM Prompt" },
+                  { icon: MapPin, label: "Venue 1", value: "DLCF Auditorium, Religion Ground", span: (useIsMobile() ? 2 : 1) },
+                  { icon: MapPin, label: "Venue 2", value: "DLCF, behind Apex tutors, Maintenance market, Ede road.", span: (useIsMobile() ? 2 : 1) }
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}
@@ -288,6 +291,7 @@ export default function App() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                    style={{ gridColumn:  `span ${item.span || 2}` }}
                   >
                     <motion.div whileHover={{ x: 8, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}>
                       <Card className="border-primary/20 hover:border-primary/40 transition-colors">
@@ -384,8 +388,10 @@ export default function App() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Button size="lg" className="bg-[#25D366] hover:bg-[#20BA5A] text-white">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Join WhatsApp Group
+                  <a href="https://chat.whatsapp.com/BR7UM9X6PBu448t4STHcjE?mode=ems_copy_t" className="flex items-center gap-2">
+                    <FaWhatsapp />
+                    Join WhatsApp Group
+                  </a>
                 </Button>
               </motion.div>
               <p className="text-sm text-muted-foreground mt-4">
@@ -408,10 +414,10 @@ export default function App() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              { icon: Printer, name: "Promise", role: "Online Registration & Printing", phone: "09064996743" },
-              { icon: Home, name: "Silas", role: "Accommodation Support", phone: "Contact for details" },
-              { icon: Home, name: "Precious", role: "Accommodation Support", phone: "Contact for details" },
-              { icon: GraduationCap, name: "Matthew", role: "Life Tutorials & Academics", phone: "Contact for details" }
+              { icon: Printer, name: "Promise", role: "Online Registration & Printing", phone: "09064996743", image: "/images/promise.jpg" },
+              { icon: Home, name: "Silas", role: "Accommodation Support", phone: "08064715279", image: "/images/silas.jpg" },
+              { icon: Home, name: "Precious", role: "Accommodation Support", phone: "09053919146", image: "/images/precious.jpg" },
+              { icon: GraduationCap, name: "Matthew", role: "Life Tutorials & Academics", phone: "08060754025", image: "/images/matthew.jpg" }
             ].map((contact, index) => (
               <motion.div
                 key={contact.name}
@@ -426,14 +432,12 @@ export default function App() {
                 >
                   <Card className="border-none shadow-md hover:shadow-xl transition-shadow h-full">
                     <CardContent className="p-6 text-center">
-                      <motion.div 
-                        className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-full mb-4"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <contact.icon className="w-7 h-7 text-primary" />
-                      </motion.div>
-                      <h3 className="text-foreground mb-2">{contact.name}</h3>
+                      <ImageWithFallback 
+                        src={contact.image}
+                        alt={contact.name}
+                        className="rounded-full w-18 h-18 mx-auto object-cover"
+                      />
+                      <h3 className="text-foreground my-2 font-semibold">{contact.name}</h3>
                       <p className="text-sm text-foreground/70 mb-3">{contact.role}</p>
                       <a href={`tel:${contact.phone}`} className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
                         <Phone className="w-4 h-4" />
@@ -459,7 +463,11 @@ export default function App() {
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Cross className="w-6 h-6" />
+                  <ImageWithFallback 
+                    src="/images/dlcf-logo.png"
+                    alt="Students studying together"
+                    width={45}
+                  />
                   <span>Deeper Life Campus Fellowship, Ile-Ife.</span>
                 </motion.div>
                 <p className="text-white/80 text-sm leading-relaxed">
