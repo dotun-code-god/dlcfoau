@@ -21,20 +21,23 @@ import { HeroSlider } from "./components/HeroSlider";
 
 export default function App() {
   const heroImages = [
-    "https://images.unsplash.com/photo-1758270705657-f28eec1a5694?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGNvbGxlZ2UlMjBzdHVkZW50cyUyMGNhbXB1c3xlbnwxfHx8fDE3NjAwNjc0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    "https://images.unsplash.com/photo-1759093886711-a6cfc14e1b7e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xsZWdlJTIwY2FtcHVzJTIwY29tbXVuaXR5fGVufDF8fHx8MTc2MDA2Nzc2Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    "https://images.unsplash.com/photo-1589872880544-76e896b0592c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50cyUyMHN0dWR5aW5nJTIwdG9nZXRoZXIlMjBsaWJyYXJ5fGVufDF8fHx8MTc2MDA2NzQyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "/images/hero-1.jpg",
+    "/images/hero-2.jpg",
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background font-jakarta">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Cross className="w-6 h-6 text-primary" />
-              <span className="text-primary">DLCF Great Ife</span>
+              <ImageWithFallback 
+                src="/images/dlcf-logo.png"
+                alt="Deeper Life Campus Fellowship Logo"
+                width={45}
+              />
+              <span className="text-primary text-xl font-semibold">Deeper Life Campus Felowship, Ile-Ife</span>
             </div>
             <div className="hidden md:flex items-center gap-6">
               <a href="#about" className="text-foreground/70 hover:text-primary transition-colors">About</a>
@@ -51,7 +54,7 @@ export default function App() {
         {/* Image Slider */}
         <div className="absolute inset-0 z-0">
           <HeroSlider images={heroImages} />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/95 via-primary/85 to-primary/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/55 to-primary/75"></div>
         </div>
         
         {/* Centered Content */}
