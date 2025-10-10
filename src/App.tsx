@@ -11,7 +11,6 @@ import {
   Compass,
   BookOpen,
   Home,
-  Cross,
   Calendar,
   Clock,
   MapPin
