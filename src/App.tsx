@@ -200,7 +200,7 @@ export default function App() {
               >
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <ImageWithFallback 
-                    src="https://images.unsplash.com/photo-1589872880544-76e896b0592c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50cyUyMHN0dWR5aW5nJTIwdG9nZXRoZXIlMjBsaWJyYXJ5fGVufDF8fHx8MTc2MDA2NzQyNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src="/images/congregation.jpg"
                     alt="Students studying together"
                     className="w-full h-auto"
                   />
@@ -263,7 +263,7 @@ export default function App() {
               >
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <ImageWithFallback 
-                    src="https://images.unsplash.com/photo-1664382951771-40432ecc81bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFjaGVyJTIwY2xhc3Nyb29tJTIwZWR1Y2F0aW9ufGVufDF8fHx8MTc2MDA0MTAyMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                    src="/images/life-tutorials.jpg"
                     alt="Teacher in classroom"
                     className="w-full h-auto"
                   />
