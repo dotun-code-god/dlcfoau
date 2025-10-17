@@ -397,7 +397,7 @@ export default function GiftPage() {
                         <Input
                           id="hall"
                           name="hall"
-                          type="tel"
+                          type="text"
                           value={formData.hall}
                           required
                           onChange={handleInputChange}
