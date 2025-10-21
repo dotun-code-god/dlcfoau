@@ -351,7 +351,7 @@ export default function GiftPage() {
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div className="space-y-2">
-                        <Label htmlFor="fullName" className="gap-1">Full Name<span className="text-red-500">*</span></Label>
+                        <Label htmlFor="fullName" className="gap-1">Full Name<span className="text-red-500">*</span> <span>(Surname first)</span></Label>
                         <Input
                           id="fullName"
                           name="fullName"
