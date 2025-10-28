@@ -236,14 +236,14 @@ export default function GiftPage() {
                     Thank you for being a part of us! 🎉
                   </motion.h2>
 
-                  <motion.p
+                  {/* <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="text-lg sm:text-xl mb-10 text-gray-700 max-w-2xl mx-auto"
                   >
                     You can now access your gift below.
-                  </motion.p>
+                  </motion.p> */}
 
                   {/* Access Gift Button */}
                   <motion.div
@@ -255,7 +255,7 @@ export default function GiftPage() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Button
+                      {/* <Button
                         size="lg"
                         className="text-lg px-10 py-7 rounded-full shadow-2xl cursor-pointer"
                         style={{ backgroundColor: "#E5C400", color: "#43487E" }}
@@ -263,7 +263,7 @@ export default function GiftPage() {
                       >
                         <Gift className="w-6 h-6 mr-2" />
                         Access Your Gift
-                      </Button>
+                      </Button> */}
                     </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -271,7 +271,8 @@ export default function GiftPage() {
                         transition={{ duration: 0.5, delay: 0.4 }}
                         className="text-lg sm:text-xl my-10 text-gray-700 max-w-2xl mx-auto"
                     >
-                        We also have a <span className="font-bold">physical gift</span> for you! <br /> To claim it, join us at any of our services and provide the number <span className="font-bold bg-emerald-900 rounded-full text-white px-2 py-1">{serialNumber}</span>.
+                        To claim your gift, come to our stand at <span className="font-semibold">Anglomoz</span> and provide the number: <br /> <br /> <span className="font-bold bg-emerald-900 rounded-full text-white px-2 py-1">{serialNumber}</span>.
+                        {/* We also have a <span className="font-bold">physical gift</span> for you! <br /> To claim it, join us at any of our services and provide the number <span className="font-bold bg-emerald-900 rounded-full text-white px-2 py-1">{serialNumber}</span>. */}
                     </motion.p>
                   </motion.div>
                 </motion.div>
