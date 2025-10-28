@@ -271,7 +271,7 @@ export default function GiftPage() {
                         transition={{ duration: 0.5, delay: 0.4 }}
                         className="text-lg sm:text-xl my-10 text-gray-700 max-w-2xl mx-auto"
                     >
-                        To claim your gift, come to our stand at <span className="font-semibold">Anglomoz</span> and provide the number: <br /> <br /> <span className="font-bold bg-emerald-900 rounded-full text-white px-2 py-1">{serialNumber}</span>.
+                        To claim your gift, join us at our coming <span className="font-semibold">freshers freshest Sunday</span> this coming <span className="font-semibold">Sunday November 2nd, 2025</span> and provide the number: <br /> <br /> <span className="font-bold bg-emerald-900 rounded-full text-white px-2 py-1">{serialNumber}</span>.
                         {/* We also have a <span className="font-bold">physical gift</span> for you! <br /> To claim it, join us at any of our services and provide the number <span className="font-bold bg-emerald-900 rounded-full text-white px-2 py-1">{serialNumber}</span>. */}
                     </motion.p>
                   </motion.div>
