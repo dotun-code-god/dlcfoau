@@ -266,7 +266,7 @@ export default function HomePage() {
 
               <div className="space-y-4 grid grid-cols-2 gap-x-4">
                 {[
-                  { icon: Calendar, label: "Date", value: "To be announced" },
+                  { icon: Calendar, label: "Date", value: "2nd November, 2026" },
                   { icon: Clock, label: "Time", value: "4PM Prompt" },
                   { icon: MapPin, label: "Venue 1", value: "DLCF Auditorium, Religion Ground", span: (useIsMobile() ? 2 : 1) },
                   { icon: MapPin, label: "Venue 2", value: "DLCF, behind Apex tutors, Maintenance market, Ede road.", span: (useIsMobile() ? 2 : 1) }
