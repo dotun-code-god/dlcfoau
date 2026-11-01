@@ -75,7 +75,7 @@ export default function HomePage() {
         {/* Image Slider */}
         <div className="absolute inset-0 z-0">
           <HeroSlider images={heroImages} />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/65 to-primary/75"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/55 to-primary/55"></div>
         </div>
         
         {/* Centered Content */}
@@ -387,7 +387,7 @@ export default function HomePage() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Button size="lg" className="bg-[#25D366] hover:bg-[#20BA5A] text-white">
-                  <a href="https://chat.whatsapp.com/BR7UM9X6PBu448t4STHcjE?mode=ems_copy_t" className="flex items-center gap-2">
+                  <a href="https://chat.whatsapp.com/CNIoLcD23eG7B27mlQDcLe" className="flex items-center gap-2">
                     <FaWhatsapp />
                     Join WhatsApp Group
                   </a>
@@ -413,10 +413,10 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              { icon: Printer, name: "Promise", role: "Online Registration & Printing", phone: "09064996743", image: "/images/promise.jpg" },
-              { icon: Home, name: "Silas", role: "Accommodation Support", phone: "08064715279", image: "/images/silas.jpg" },
+              { icon: Printer, name: "Simeon", role: "Online Registration & Printing", phone: "07087415067", image: "/images/simeon.jpeg" },
+              { icon: Home, name: "Oluwafemi", role: "Support & Guidance", phone: "07025357137", image: "/images/oluwafemi.jpeg" },
               { icon: Home, name: "Precious", role: "Accommodation Support", phone: "09053919146", image: "/images/precious.jpg" },
-              { icon: GraduationCap, name: "Matthew", role: "Life Tutorials & Academics", phone: "08060754025", image: "/images/matthew.jpg" }
+              { icon: GraduationCap, name: "Dotun", role: "Life Tutorials & Academics", phone: "09131571784", image: "/images/joseph_oyetunde_941c27be.jpg" }
             ].map((contact, index) => (
               <motion.div
                 key={contact.name}
