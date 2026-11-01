@@ -93,7 +93,7 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               className="text-white mb-8 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
             >
-              Dear Freshman, Welcome to Great Ife — We're Glad You're Here!
+              Dear Freshman, DLCF OAU Welcomes You — This is Home!
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
