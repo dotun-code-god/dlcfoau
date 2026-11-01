@@ -116,7 +116,7 @@ export default function HomePage() {
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" variant="outline" className="bg-transparent text-white border-2 border-white hover:bg-white/10 text-lg px-8 py-6" asChild>
-                  <a href="https://chat.whatsapp.com/BR7UM9X6PBu448t4STHcjE?mode=ems_copy_t">Join Freshers' Group</a>
+                  <a href="https://chat.whatsapp.com/CNIoLcD23eG7B27mlQDcLe">Join Freshers' Group</a>
                 </Button>
               </motion.div>
             </motion.div>
