@@ -21,11 +21,17 @@ import { AnimatedSection, FadeIn, SlideInLeft, SlideInRight, ScaleIn } from "../
 import { FaWhatsapp } from "react-icons/fa";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useIsMobile } from "../components/ui/use-mobile";
+import { LifeTutorialStack } from "../components/LifeTutorialStack";
 
 export default function HomePage() {
     const heroImages = [
-    "/images/hero-1.jpg",
-    "/images/hero-2.jpg",
+    "/images/hero/1.jpg",
+    "/images/hero/congregation.jpg",
+    "/images/hero/IMG_9339.jpg",
+    "/images/hero/IMG_7383.jpg",
+    "/images/hero/IMG_7370.jpg",
+    "/images/hero/IMG_7400.jpg",
+    "/images/hero/IMG_7527.jpg",
   ];
 
   return (
@@ -35,9 +41,9 @@ export default function HomePage() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm shadow-sm z-50"
+        className="fixed top-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl -translate-x-1/2 rounded-2xl bg-white/90 shadow-sm backdrop-blur-sm"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <motion.div 
               className="flex items-center gap-2"
@@ -79,7 +85,7 @@ export default function HomePage() {
         </div>
         
         {/* Centered Content */}
-        <div className="relative z-10 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 mt-10">
           <div className="max-w-5xl text-center">
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
@@ -114,13 +120,6 @@ export default function HomePage() {
                 </Button>
               </motion.div>
             </motion.div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full"></div>
           </div>
         </div>
       </section>
@@ -200,7 +199,7 @@ export default function HomePage() {
               >
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <ImageWithFallback 
-                    src="/images/congregation.jpg"
+                    src="/images/meet us/IMG_9495.jpg"
                     alt="Students studying together"
                     className="w-full h-auto"
                   />
@@ -256,19 +255,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <SlideInLeft className="order-2 lg:order-1">
-              <motion.div 
-                className="relative"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <ImageWithFallback 
-                    src="/images/life-tutorials.jpg"
-                    alt="Teacher in classroom"
-                    className="w-full h-auto"
-                  />
-                </div>
-              </motion.div>
+              <LifeTutorialStack />
             </SlideInLeft>
 
             <SlideInRight className="order-1 lg:order-2">
@@ -526,7 +513,7 @@ export default function HomePage() {
 
           <FadeIn delay={0.3}>
             <div className="border-t border-white/20 pt-8 text-center text-sm text-white/70">
-              <p>© 2025 Deeper Life Campus Fellowship, Ile-Ife. All rights reserved.</p>
+              <p>© 2026 Deeper Life Campus Fellowship, Ile-Ife. All rights reserved.</p>
             </div>
           </FadeIn>
         </div>
